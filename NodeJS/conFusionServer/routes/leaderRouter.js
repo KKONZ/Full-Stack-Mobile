@@ -40,13 +40,5 @@ leaderRouter.route('/:leaderId')
     res.end('Deleting leader: ' + req.params.leaderId);
 });
 
-app.use(express.static(__dirname+ '/public'))
-
-app.use((req, res, next) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
-    res.end('<html><body><h1>This is an Express Server</h1></body></html>');
-});
-
 
 module.exports = leaderRouter;
