@@ -24,7 +24,8 @@ leaderRouter.route('/')
     res.end('Deleting all leaders');
 });
 
-leaderRouter.route('/:leaderId').get((req,res,next) => {
+leaderRouter.route('/:leaderId')
+.get((req,res,next) => {
     res.end('Will send details of the leader: ' + req.params.leaderId + ' to you!');
 })
 .post((req,res,next) => {
@@ -38,5 +39,14 @@ leaderRouter.route('/:leaderId').get((req,res,next) => {
 .delete((req,res,next) => {
     res.end('Deleting leader: ' + req.params.leaderId);
 });
+
+app.use(express.static(__dirname+ '/public'))
+
+app.use((req, res, next) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/html');
+    res.end('<html><body><h1>This is an Express Server</h1></body></html>');
+});
+
 
 module.exports = leaderRouter;
